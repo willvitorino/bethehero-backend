@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/dev.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
