@@ -1,5 +1,6 @@
 
 exports.up = function(knex) {
+  console.log("EXECUTING: CREATE ONGS");
   return knex.schema.createTable('ongs', function (table) {
     table.string('id').primary();
     table.string('name').notNullable();

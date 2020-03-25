@@ -1,5 +1,6 @@
 
 exports.up = function(knex) {
+	console.log("EXECUTING: CREATE INCIDENTS");
 	return knex.schema.createTable('incidents', function (table) {
 		table.increments();
 
