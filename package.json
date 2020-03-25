@@ -2,12 +2,20 @@
   "name": "bethehero-backend",
   "version": "1.0.0",
   "description": "Api REST do sistema Be The Hero",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/belshoff/bethehero-backend.git",
   "author": "William Vitorino <williamvitorino3@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "knex": "^0.20.13",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
