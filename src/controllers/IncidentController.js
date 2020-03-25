@@ -1,9 +1,21 @@
 const connection = require('../database/connection');
 
 async function index (req, res) {
-	const incidents = await connection('incidents').select('*');
+	const { page = 0, pageSize = 5 } = req.query;
 
-	return res.json(incidents);
+	connection('incidents').count('*').then(
+		([count]) => {
+			res.header('X-Total-Count', count["count(*)"]);
+			connection('incidents')
+				.join('ongs', 'ongs.id', '=', 'incidents.ong_id')
+				.limit(pageSize).offset(page*pageSize)
+				.select([ 'incidents.*', 'ongs.name', 'ongs.whatsapp', 'ongs.city', 'ongs.uf' ]).then(
+				items => {
+					return res.json( items );
+				}
+			)
+		}
+	);
 }
 
 async function create(req, res) {
