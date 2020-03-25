@@ -1,13 +1,21 @@
 const connection = require('../database/connection');
+const { NotAllowedDefault } = require('../errors');
 
 async function index (req, res) {
 	const ong_id = req.headers.authorization;
 
-	const incidents = await connection('incidents')
+	connection('incidents')
 		.where('ong_id', ong_id)
-		.select('*');
-
-	return res.json(incidents);
+		.select('*')
+		.then(
+			incidents => {
+				return res.json(incidents);
+			}
+		).catch(
+			() => {
+				NotAllowedDefault(res);
+			}
+	);
 }
 
 module.exports = {
