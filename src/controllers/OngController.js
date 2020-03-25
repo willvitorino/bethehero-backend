@@ -1,10 +1,17 @@
 const connection = require('../database/connection');
 const crypto = require('crypto');
+const { NotAllowedDefault } = require('../errors');
 
 async function index (req, res) {
-	const ongs = await connection('ongs').select('*');
-
-	return res.json(ongs);
+	connection('ongs').select('*').then(
+		ongs => {
+			return res.json(ongs);
+		}
+	).catch(
+		() => {
+			return NotAllowedDefault(res);
+		}
+	);
 }
 
 async function create(req, res) {
@@ -13,11 +20,15 @@ async function create(req, res) {
 
 	const id = crypto.randomBytes(4).toString('HEX');
 
-	await  connection('ongs').insert({
-		id, name, email, whatsapp, city, uf
-	});
-
-	return res.json({ id });
+	connection('ongs').insert({ id, name, email, whatsapp, city, uf }).then(
+		() => {
+			return res.json({ id });
+		}
+	).catch(
+		() => {
+			return
+		}
+	);
 }
 
 module.exports = {
