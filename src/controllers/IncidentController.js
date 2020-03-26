@@ -51,7 +51,7 @@ async function remove(req, res) {
 			if ( incident.ong_id !== ong_id ) {
 				return res.status(401).json({ error: 'Operação não permitida.' })
 			} else {
-				connection('incidents').delete(incident).then(
+				connection('incidents').where('id', id).del().then(
 					() => {
 						return res.status(204).send();
 					}
