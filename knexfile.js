@@ -2,6 +2,17 @@
 
 module.exports = {
 
+  // development: {
+  //   client: 'sqlite3',
+  //   connection: {
+  //     filename: './src/database/db.sqlite'
+  //   },
+  //   migrations: {
+  //     directory: './src/database/migrations'
+  //   },
+  //   useNullAsDefault: true
+  // },
+
   development: {
     client: 'sqlite3',
     connection: {
@@ -9,6 +20,19 @@ module.exports = {
     },
     migrations: {
       directory: './src/database/migrations'
+    },
+    useNullAsDefault: true
+  },
+
+  production: {
+    client: 'mysql2',
+    connection: process.env.DB_CONNECTION,
+    migrations: {
+      directory: './src/database/migrations'
+    },
+    pool: {
+      min: 2,
+      max: 10
     },
     useNullAsDefault: true
   },
@@ -27,16 +51,5 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations'
     }
-  },
-
-  production: {
-    client: 'sqlite3',
-    connection: {
-      filename: './src/database/db.sqlite'
-    },
-    migrations: {
-      directory: './src/database/migrations'
-    },
-    useNullAsDefault: true
   }
 };
