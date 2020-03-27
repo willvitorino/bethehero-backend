@@ -25,19 +25,6 @@ module.exports = {
     useNullAsDefault: true
   },
 
-  production: {
-    client: 'mysql2',
-    connection: process.env.DB_CONNECTION,
-    migrations: {
-      directory: './src/database/migrations'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    useNullAsDefault: true
-  },
-
   staging: {
     client: 'postgresql',
     connection: {
