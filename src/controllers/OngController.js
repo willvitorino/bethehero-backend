@@ -26,7 +26,7 @@ async function create(req, res) {
 		}
 	).catch(
 		() => {
-			return
+			return res.status(400).send()
 		}
 	);
 }
