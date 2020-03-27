@@ -1,2 +1,2 @@
-web: node src/index.js
+web: yarn start
 release: knex migrate:latest
