@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "ENVIROMENT=production node src/index.js",
+    "dev": "ENVIROMENT=development nodemon src/index.js"
   },
   "dependencies": {
     "celebrate": "^12.0.1",
@@ -25,7 +25,6 @@
   },
   "engines": {
     "node": "12.16.x",
-    "yarn": "1.22.X",
-    "npx": "6.13.x"
+    "yarn": "1.22.X"
   }
 }
